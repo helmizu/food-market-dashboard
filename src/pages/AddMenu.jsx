@@ -76,7 +76,7 @@ const AddMenu = () => {
                 helperText={fieldState.error?.message}
                 select
                 label="Restaurant"
-                sx={{ minWidth: 300 }}
+                sx={{ width: 300 }}
                 color="info"
               >
                 {restaurants.map((restaurant) => (
@@ -99,7 +99,7 @@ const AddMenu = () => {
                 helperText={fieldState.error?.message}
                 select
                 label="Type"
-                sx={{ minWidth: 300 }}
+                sx={{ width: 300 }}
                 color="info"
               >
                 {TYPES.map((type) => (
@@ -121,7 +121,7 @@ const AddMenu = () => {
                 error={!!fieldState.error}
                 helperText={fieldState.error?.message}
                 label="Name"
-                sx={{ minWidth: 300 }}
+                sx={{ width: 300 }}
                 color="info"
               />
             )}
@@ -137,7 +137,7 @@ const AddMenu = () => {
                 error={!!fieldState.error}
                 helperText={fieldState.error?.message}
                 label="Description"
-                sx={{ minWidth: 300 }}
+                sx={{ width: 300 }}
                 color="info"
                 multiline
                 rows="2"
@@ -155,7 +155,7 @@ const AddMenu = () => {
                 error={!!fieldState.error}
                 helperText={fieldState.error?.message}
                 label="Modal"
-                sx={{ minWidth: 300 }}
+                sx={{ width: 300 }}
                 color="info"
               />
             )}
@@ -171,7 +171,7 @@ const AddMenu = () => {
                 error={!!fieldState.error}
                 helperText={fieldState.error?.message}
                 label="Price"
-                sx={{ minWidth: 300 }}
+                sx={{ width: 300 }}
                 color="info"
               />
             )}
@@ -196,7 +196,7 @@ const AddMenu = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <Button type="submit" variant='outlined' sx={{ minWidth: 300 }} disabled={loading}>
+          <Button type="submit" variant='outlined' sx={{ width: 300 }} disabled={loading}>
             Submit
           </Button>
         </Grid>

@@ -50,7 +50,7 @@ const CreateRestaurant = () => {
                 error={!!fieldState.error}
                 helperText={fieldState.error?.message}
                 label="Name"
-                sx={{ minWidth: 300 }}
+                sx={{ width: 300 }}
                 color="info"
               />
             )}
@@ -68,7 +68,7 @@ const CreateRestaurant = () => {
                 select
                 label="City"
                 placeholder='Select City'
-                sx={{ minWidth: 300 }}
+                sx={{ width: 300 }}
                 color="info"
               >
                 {CITIES.map((city) => (
@@ -81,7 +81,7 @@ const CreateRestaurant = () => {
           />
         </Grid>
         <Grid item xs={12}>
-          <Button type="submit" variant='outlined' sx={{ minWidth: 300 }} disabled={loading}>
+          <Button type="submit" variant='outlined' sx={{ width: 300 }} disabled={loading}>
             Submit
           </Button>
         </Grid>

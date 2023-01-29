@@ -75,7 +75,7 @@ const Login = () => {
                 error={!!fieldState.error}
                 helperText={fieldState.error?.message}
                 label="Email"
-                sx={{ minWidth: 300 }}
+                sx={{ width: 300 }}
                 color="info"
               />
             )}
@@ -89,7 +89,7 @@ const Login = () => {
                 error={!!fieldState.error}
                 helperText={fieldState.error?.message}
                 label="Password"
-                sx={{ minWidth: 300 }}
+                sx={{ width: 300 }}
                 color="info"
                 type="password"
               />

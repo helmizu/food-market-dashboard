@@ -33,7 +33,6 @@ const useMenu = () => {
 
 const Menu = () => {
   const { menu } = useMenu();
-  console.log({ menu })
   return (
     <>
       <Grid container spacing={2}>

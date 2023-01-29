@@ -1,4 +1,4 @@
-import { collection, addDoc, getDocs, getFirestore, updateDoc, doc, getDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, getFirestore, updateDoc, doc, getDoc, deleteDoc } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const addMenu = async (data = {}) => {
@@ -50,4 +50,10 @@ export const updateMenu = async (data = {}) => {
     return await updateDoc(docRef, { ...dataUpdate, image: imageName, imageUrl, imagePath })
   }
   return await updateDoc(docRef, dataUpdate);
+}
+
+export const deleteMenu = async (menuId = '') => {
+  const db = getFirestore();
+  const docRef = doc(db, "menu", menuId);
+  return await deleteDoc(docRef);
 }

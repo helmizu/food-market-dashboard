@@ -6,12 +6,13 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-import { getAllMenu } from '../utils/functions/menu'
-import { Button, Grid, Stack } from '@mui/material';
+import { deleteMenu, getAllMenu } from '../utils/functions/menu'
+import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Stack } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 const useMenu = () => {
-  const [menu, setMenu] = React.useState([])
+  const [menu, setMenu] = React.useState([]);
+  const [deleteId, setDeleteId] = React.useState(null);
 
   const getDataMenu = async () => {
     try {
@@ -22,17 +23,45 @@ const useMenu = () => {
     }
   }
 
+  const onClickDelete = (menuId) => {
+    setDeleteId(menuId);
+  }
+
+  const onCancelDelete = () => {
+    setDeleteId(null);
+  }
+
+  const onConfirmDelete = async () => {
+    try {
+      await deleteMenu(deleteId);
+      await setDeleteId(null);
+      await getDataMenu();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
   React.useEffect(() => {
     getDataMenu();
   }, [])
 
   return {
     menu,
+    deleteId,
+    onClickDelete,
+    onConfirmDelete,
+    onCancelDelete,
   };
 }
 
 const Menu = () => {
-  const { menu } = useMenu();
+  const {
+    menu,
+    deleteId,
+    onClickDelete,
+    onConfirmDelete,
+    onCancelDelete,
+  } = useMenu();
   return (
     <>
       <Grid container spacing={2}>
@@ -70,6 +99,12 @@ const Menu = () => {
                         <Link to={`/restaurant/menu/${menu.id}/edit`}>
                           <Button>Edit</Button>
                         </Link>
+                        <Button
+                          onClick={() => onClickDelete(menu.id)}
+                          color="error"
+                        >
+                          Delete
+                        </Button>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -79,6 +114,20 @@ const Menu = () => {
           </Stack>
         </Grid>
       </Grid>
+      <Dialog open={!!deleteId} onClose={onCancelDelete}>
+        <DialogTitle>
+          Do you want to delete {menu.find(item => item.id === deleteId)?.name}?
+        </DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            This action can't be undone
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={onCancelDelete} color="secondary" variant='outlined'>Cancel</Button>
+          <Button onClick={onConfirmDelete} color="error" variant="contained">Delete</Button>
+        </DialogActions>
+      </Dialog>
     </>
   )
 }

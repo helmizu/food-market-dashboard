@@ -40,7 +40,7 @@ const AddMenu = () => {
     try {
       const doc = await addMenu(data)
       if (doc.id) {
-        navigate('/menu');
+        navigate('/restaurant/menu');
       }
     } catch (error) {
       console.log(error);

@@ -75,11 +75,10 @@ const Menu = () => {
                 <TableHead>
                   <TableRow>
                     <TableCell>Name</TableCell>
-                    <TableCell align="right">Image</TableCell>
-                    <TableCell align="right">Type</TableCell>
-                    <TableCell align="right">Description</TableCell>
-                    <TableCell align="right">Modal</TableCell>
-                    <TableCell align="right">Price</TableCell>
+                    <TableCell>Image</TableCell>
+                    <TableCell>Type</TableCell>
+                    <TableCell>Description</TableCell>
+                    <TableCell>Price</TableCell>
                     <TableCell align="right">Action</TableCell>
                   </TableRow>
                 </TableHead>
@@ -90,11 +89,10 @@ const Menu = () => {
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                       <TableCell component="th">{menu.name}</TableCell>
-                      <TableCell align="right"><img src={menu.imageUrl} height={100} /></TableCell>
-                      <TableCell align="right">{menu.type}</TableCell>
-                      <TableCell align="right">{menu.description}</TableCell>
-                      <TableCell align="right">{menu.modal}</TableCell>
-                      <TableCell align="right">{menu.price}</TableCell>
+                      <TableCell><img src={menu.imageUrl} height={100} /></TableCell>
+                      <TableCell>{menu.type}</TableCell>
+                      <TableCell>{menu.description}</TableCell>
+                      <TableCell>{menu.price}</TableCell>
                       <TableCell align="right">
                         <Link to={`/restaurant/menu/${menu.id}/edit`}>
                           <Button>Edit</Button>

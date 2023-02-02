@@ -2,8 +2,8 @@ import * as React from 'react'
 import { useForm, Controller } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-import { Button, FormControl, FormHelperText, Grid, InputLabel, MenuItem, TextField } from '@mui/material';
-import { addRestaurant, getRestaurants } from '../utils/functions/restaurant';
+import { Button, FormControl, FormHelperText, Grid, MenuItem, TextField } from '@mui/material';
+import { getRestaurants } from '../utils/functions/restaurant';
 import { useNavigate } from 'react-router-dom';
 import { addMenu } from '../utils/functions/menu';
 
@@ -12,7 +12,6 @@ const schema = yup.object({
   type: yup.string().required(),
   name: yup.string().required(),
   description: yup.string().required(),
-  modal: yup.number().required(),
   price: yup.number().required(),
   image: yup.mixed().required(),
 }).required();
@@ -141,22 +140,6 @@ const AddMenu = () => {
                 color="info"
                 multiline
                 rows="2"
-              />
-            )}
-          />
-        </Grid>
-        <Grid item xs={12}>
-          <Controller
-            name="modal"
-            control={control}
-            render={({ field, fieldState }) => (
-              <TextField
-                {...field}
-                error={!!fieldState.error}
-                helperText={fieldState.error?.message}
-                label="Modal"
-                sx={{ width: 300 }}
-                color="info"
               />
             )}
           />

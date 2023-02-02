@@ -1,10 +1,11 @@
-import { collection, addDoc, getDocs, getFirestore, updateDoc, doc, getDoc, deleteDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs, getFirestore, updateDoc, doc, getDoc, deleteDoc, serverTimestamp } from "firebase/firestore";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const addMenu = async (data = {}) => {
   const db = getFirestore();
+  const dbRef = collection(db, "menu");
   const imageName = data.image.name;
-  const docRef = await addDoc(collection(db, "menu"), { ...data, image: imageName });
+  const docRef = await addDoc(dbRef, { ...data, image: imageName, createdAt: serverTimestamp() });
   if (docRef.id) {
     const storage = getStorage();
     const imagePath = `/images/menu/${docRef.id}_${imageName}`
@@ -47,7 +48,7 @@ export const updateMenu = async (data = {}) => {
     const storageRef = ref(storage, imagePath);
     await uploadBytes(storageRef, data.image);
     const imageUrl = await getDownloadURL(storageRef)
-    return await updateDoc(docRef, { ...dataUpdate, image: imageName, imageUrl, imagePath })
+    return await updateDoc(docRef, { ...dataUpdate, image: imageName, imageUrl, imagePath, updatedAt: serverTimestamp() })
   }
   return await updateDoc(docRef, dataUpdate);
 }

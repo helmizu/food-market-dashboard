@@ -47,8 +47,10 @@ const Restaurant = () => {
                 <TableHead>
                   <TableRow>
                     <TableCell>Name</TableCell>
-                    <TableCell align="right">City</TableCell>
-                    <TableCell align="right">Rating</TableCell>
+                    <TableCell>Image</TableCell>
+                    <TableCell>City</TableCell>
+                    <TableCell>Address</TableCell>
+                    <TableCell>Rating</TableCell>
                     <TableCell align="right">Action</TableCell>
                   </TableRow>
                 </TableHead>
@@ -58,9 +60,12 @@ const Restaurant = () => {
                       key={restaurant.id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
+                      {console.log(restaurant.name, { restaurant })}
                       <TableCell component="th">{restaurant.name}</TableCell>
-                      <TableCell align="right">{restaurant.city}</TableCell>
-                      <TableCell align="right">
+                      <TableCell><img src={restaurant.imageUrl} height={100} /></TableCell>
+                      <TableCell>{restaurant.city}</TableCell>
+                      <TableCell>{restaurant.address || '-'}</TableCell>
+                      <TableCell>
                         <Box display="inline-flex">
                           <span>{restaurant.rating || 0}</span>
                           <StarRoundedIcon color="warning" sx={{ fontSize: '18px' }} fontSize="inherit" />

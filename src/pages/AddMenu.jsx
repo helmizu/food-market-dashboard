@@ -29,7 +29,6 @@ const AddMenu = () => {
       name: '',
       description: '',
       price: '',
-      modal: '',
       image: null,
     },
     resolver: yupResolver(schema)
